@@ -1,0 +1,78 @@
+[alias]
+
+# View abbreviated SHA, description, and history graph of the latest 20 commits
+l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
+la = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate --all
+
+lol = log --graph --decorate --pretty=oneline --abbrev-commit
+lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+# View the current working tree status using the short format
+s = status -s
+
+# Show the diff between the latest commit and the current state
+d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+dc = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --cached --patch-with-stat"
+
+c = commit
+
+co = checkout
+sw = switch
+
+cp = cherry-pick
+
+f = fetch --prune --verbose
+
+m = merge --ff-only
+
+fm = !"git f && git m"
+fr = !"git f && git r"
+
+r = rebase --rebase-merges
+
+a = add
+
+p = push
+ph = push heroku master
+st = !"git -c commit.gpgsign=false stash"
+
+
+[core]
+# Treat spaces before tabs and all kinds of trailing whitespace as an error
+# [default] trailing-space: looks for spaces at the end of a line
+# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+# Make `git rebase` safer on OS X
+# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+trustctime = false
+
+pager = diff-so-fancy | less -FXRi
+
+[color]
+status = auto
+
+[color "status"]
+	added = green
+	updated = green
+	changed = yellow
+	untracked = cyan
+	unmerged = red
+
+[rerere]
+	enabled = true
+
+ [user]
+	name = Martin Hanzík
+	email = martin.hanzik@applifting.cz
+ [filter "lfs"]
+     clean = git-lfs clean -- %f
+     smudge = git-lfs smudge -- %f
+   required = true
+     process = git-lfs filter-process
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[diff "sopsdiffer"]
+	textconv = sops -d

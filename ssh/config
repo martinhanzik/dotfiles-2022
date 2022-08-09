@@ -1,0 +1,19 @@
+Host aplFTP
+  HostName 167.71.45.150
+  User mah
+  Port 22
+
+Host aplUbuntu
+  HostName 192.168.0.201
+  User mah
+
+Host aplMac
+  HostName 192.168.0.203
+  User martinhanzik
+
+Host aplAres
+  HostName 192.168.0.204
+  User mah
+
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
